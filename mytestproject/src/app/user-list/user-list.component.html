@@ -1,0 +1,67 @@
+  
+
+<div class="table-data">
+  <div class="search-list">
+    <input type="text" placeholder="Search user name here..." id="search_text" class="form-group" (keyup)="searchtext()" onchange="searchtext()" />
+</div>
+  <table>
+    <caption>User List</caption>
+    <thead>
+        <tr>
+            <th>#</th>
+          <th>user_id</th>
+          <th>User Name</th>
+          <th>User Email</th>
+          <th>User Password</th>
+          <th>User Image</th>
+          <th>user position</th>
+          <th>user salary</th>
+          <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of user_list;let i=index">
+            <td>{{i+1}}</td>
+              <td>{{item.user_id}}</td>
+              <td>{{item.usr_name}}</td>
+              <td>{{item.usr_mail}}</td>
+              <td>{{item.password}}</td>
+              <td><a target="_blank" href="{{item.image}}">View image</a></td>
+              <td>{{item.emp_position}}</td>
+              <td>{{item.emp_salary}}</td>
+              
+              <td class="action"><a (click)="edit_user(item.user_id)" style="cursor: pointer;"><i class="fa fa-edit"></i></a>
+             <a (click)="delete_user(item.user_id)" style="cursor: pointer;"><i class="fa fa-trash"></i></a></td>
+            </tr>
+    </tbody>
+  </table>
+</div>
+  <div class="modal" id="edit_user">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Edit User</h4>
+          <button type="button" class="close" data-dismiss="modal" (click)="close()">&times;</button>
+        </div>
+  
+        <!-- Modal Body -->
+        <div class="modal-body">
+            <form class="login-container">
+                <p><input type="text" id="user_name" placeholder="User Name"></p>
+                <p><input type="email" id="user_email" placeholder="Email"></p>
+                <p><input type="password" id="password" placeholder="Password"></p>
+                <p><input type="file" id="image" (change)="onFileSelected($event)"></p>
+                <p><input type="submit"value="Update" (click)="update_user()"></p>
+              </form>
+        </div>
+  
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
